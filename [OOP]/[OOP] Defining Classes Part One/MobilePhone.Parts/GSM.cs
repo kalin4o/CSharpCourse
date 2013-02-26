@@ -65,18 +65,14 @@ namespace MobilePhone.Parts
 
 
         public GSM(string manufacturer, string model)
+            : this(manufacturer, model, null, null)
         {
-            this.manufacturer = manufacturer;
-            this.model = model;
         }
-        public GSM(string manufacturer, string model, double price, string owner)
+        public GSM(string manufacturer, string model, double? price, string owner)
+            : this(manufacturer, model, price, owner, null, null)
         {
-            this.manufacturer = manufacturer;
-            this.model = model;
-            this.price = price;
-            this.owner = owner;
         }
-        public GSM(string manufacturer, string model, double price, string owner, Display display, Battery battInfo)
+        public GSM(string manufacturer, string model, double? price, string owner, Display display, Battery battInfo)
         {
             this.manufacturer = manufacturer;
             this.model = model;
@@ -93,7 +89,17 @@ namespace MobilePhone.Parts
         }
         public override string ToString()
         {
-            return "Model: " + this.model + " Manufacturer: " + this.manufacturer + " Price: " + this.price + " Owner: " + this.owner;
+            StringBuilder phoneInfo = new StringBuilder();
+            phoneInfo.AppendLine("Model: " + this.Model + "\nManufacturer: " + this.Manufacturer + "\nOwner: " + this.Owner + "\nPrice: " + this.Price);
+            if (this.battInfo != null)
+            {
+                phoneInfo.AppendLine("Battery: " + this.battInfo.Model);
+            }
+            if (this.display != null)
+            {
+                phoneInfo.AppendLine("Display size: " + this.display.Size + "\nDisplay colors number: " + this.display.ColorsNumber);               
+            }
+            return phoneInfo.ToString();
         }
 
         static GSM iPhone4S = new GSM("Apple", "4S", 500, "Pesho", new Display(), new Battery("Varta"));

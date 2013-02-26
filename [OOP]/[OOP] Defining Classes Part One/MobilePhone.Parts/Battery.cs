@@ -37,23 +37,18 @@ namespace MobilePhone.Parts
             get { return type; }
             set { type = value; }
         }
-
-
-
         public Battery()
         {
         }
         public Battery(string model)
-        {
-            this.model = model;
+            : this(model, null, null)
+        { 
         }
-        public Battery(string model, double hoursIdle, double hoursTalk)
+        public Battery(string model, double? hoursIdle, double? hoursTalk)
+            : this(model, hoursIdle, hoursTalk, BatteryType.LiIon)
         {
-            this.model = model;
-            this.hoursIdle = hoursIdle;
-            this.hoursTalk = hoursTalk;
         }
-        public Battery(string model, double hoursIdle, double hoursTalk, BatteryType type)
+        public Battery(string model, double? hoursIdle, double? hoursTalk, BatteryType type)
         {
             this.model = model;
             this.hoursIdle = hoursIdle;

@@ -24,7 +24,7 @@ namespace MobilePhone.Parts
         {
             foreach (var item in ArrPhones)
             {
-                item.ShowInfo();
+                Console.WriteLine(item.ToString());
             }
             arrPhones[0].IPhone4S.ShowInfo();
             Console.WriteLine(arrPhones[0].IPhone4S.ToString());
